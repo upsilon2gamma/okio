@@ -167,7 +167,9 @@ public final class PipeTest {
           Thread.sleep(1000L);
           assertEquals(3, pipe.source().read(buffer, Long.MAX_VALUE));
           assertEquals("jkl", buffer.readUtf8());
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
+          throw new AssertionError();
+        } catch (InterruptedException e) {
           throw new AssertionError();
         }
       }
@@ -210,7 +212,9 @@ public final class PipeTest {
           pipe.source().read(readBuffer, 3);
           Thread.sleep(1000);
           pipe.source().read(readBuffer, 3);
-        } catch (InterruptedException | IOException e) {
+        } catch (InterruptedException e) {
+          throw new AssertionError(e);
+        } catch (IOException e) {
           throw new AssertionError(e);
         }
       }
@@ -232,7 +236,9 @@ public final class PipeTest {
           pipe.source().read(new Buffer(), 3);
           Thread.sleep(1000);
           pipe.source().close();
-        } catch (InterruptedException | IOException e) {
+        } catch (InterruptedException e) {
+          throw new AssertionError(e);
+        } catch (IOException e) {
           throw new AssertionError(e);
         }
       }
@@ -258,7 +264,9 @@ public final class PipeTest {
           pipe.source().read(new Buffer(), 3);
           Thread.sleep(1000);
           pipe.source().close();
-        } catch (InterruptedException | IOException e) {
+        } catch (InterruptedException e) {
+          throw new AssertionError(e);
+        } catch (IOException e) {
           throw new AssertionError(e);
         }
       }
@@ -369,7 +377,9 @@ public final class PipeTest {
           pipe.sink().write(new Buffer().writeUtf8("ghi"), 3);
           Thread.sleep(1000L);
           pipe.sink().write(new Buffer().writeUtf8("jkl"), 3);
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
+          throw new AssertionError();
+        } catch (InterruptedException e) {
           throw new AssertionError();
         }
       }
